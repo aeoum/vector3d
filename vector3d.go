@@ -43,3 +43,15 @@ func (v *Vector3D) IsZeroVector() bool {
 func (v *Vector3D) DotProduct(v2 *Vector3D) float64 {
 	return v.x*v2.x + v.y*v2.y + v.z*v2.z
 }
+
+func (v *Vector3D) CrossProduct(v2 *Vector3D) Vector3D {
+	return Vector3D{
+		x: v.y*v2.z - v.z*v2.y,
+		y: v.z*v2.x - v.x*v2.z,
+		z: v.x*v2.y - v.y*v2.x,
+	}
+}
+
+func (v *Vector3D) IsEqual(v2 *Vector3D) bool {
+	return v.x == v2.x && v.y == v2.y && v.z == v2.z
+}

@@ -146,3 +146,78 @@ func TestVector3D_Normalize(t *testing.T) {
 		})
 	}
 }
+
+func TestVector3D_IsEqual(t *testing.T) {
+	tt := []struct {
+		name     string
+		v1       *Vector3D
+		v2       *Vector3D
+		expected bool
+	}{
+		{
+			name:     "Zero vector",
+			v1:       New(0, 0, 0),
+			v2:       New(1, 1, 1),
+			expected: false,
+		},
+		{
+			name:     "Reversed vector",
+			v1:       New(1, 2, 3),
+			v2:       New(3, 2, 1),
+			expected: false,
+		},
+		{
+			name:     "Equal vectors",
+			v1:       New(1, 2, 3),
+			v2:       New(1, 2, 3),
+			expected: true,
+		},
+	}
+
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			got := tc.v1.IsEqual(tc.v2)
+
+			if got != tc.expected {
+				t.Fatalf("unexpected error: got=%v but expected=%v", got, tc.expected)
+			}
+		})
+	}
+}
+func TestVector3D_CrossProduct(t *testing.T) {
+	tt := []struct {
+		name     string
+		v1       *Vector3D
+		v2       *Vector3D
+		expected *Vector3D
+	}{
+		{
+			name:     "Zero vector",
+			v1:       New(0, 0, 0),
+			v2:       New(0, 0, 0),
+			expected: New(0, 0, 0),
+		},
+		{
+			name:     "Zero vector with Positive vector",
+			v1:       New(0, 0, 0),
+			v2:       New(1, 2, 3),
+			expected: New(0, 0, 0),
+		},
+		{
+			name:     "Random vector",
+			v1:       New(1, 3, 3),
+			v2:       New(7, 1, 0),
+			expected: New(-3, 21, -20),
+		},
+	}
+
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			got := tc.v1.CrossProduct(tc.v2)
+
+			if !got.IsEqual(tc.expected) {
+				t.Fatalf("unexpected error: got=%v but expected=%v", got, tc.expected)
+			}
+		})
+	}
+}
