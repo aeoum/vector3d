@@ -222,3 +222,41 @@ func TestVector3D_CrossProduct(t *testing.T) {
 		})
 	}
 }
+
+func TestVector3D_Scale(t *testing.T) {
+	tt := []struct {
+		name     string
+		vec      *Vector3D
+		scalar   float64
+		expected *Vector3D
+	}{
+		{
+			name:     "Zero vector",
+			vec:      New(1, 2, 3),
+			scalar:   0,
+			expected: New(0, 0, 0),
+		},
+		{
+			name:     "Scale double",
+			vec:      New(1, 2, 3),
+			scalar:   2,
+			expected: New(2, 4, 6),
+		},
+		{
+			name:     "Shrink half",
+			vec:      New(2, 4, 6),
+			scalar:   0.5,
+			expected: New(1, 2, 3),
+		},
+	}
+
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			got := tc.vec.Scale(tc.scalar)
+
+			if !got.IsEqual(tc.expected) {
+				t.Fatalf("unexpected error: got=%v but expected=%v", got, tc.expected)
+			}
+		})
+	}
+}
