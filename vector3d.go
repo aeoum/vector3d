@@ -4,6 +4,12 @@ import (
 	"math"
 )
 
+const epsilon = 0.000000001
+
+func equalFloat64(a, b float64) bool {
+	return math.Abs(a-b) <= epsilon
+}
+
 type Vector3D struct {
 	x, y, z float64
 }
