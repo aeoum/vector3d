@@ -184,6 +184,7 @@ func TestVector3D_IsEqual(t *testing.T) {
 		})
 	}
 }
+
 func TestVector3D_CrossProduct(t *testing.T) {
 	tt := []struct {
 		name     string

@@ -22,14 +22,14 @@ func (v *Vector3D) Norm() float64 {
 
 func (v *Vector3D) Normalize() *Vector3D {
 	if v.IsZeroVector() {
-		return &Vector3D{}
+		return v
 	}
 
-	return &Vector3D{
-		x: v.x / v.Norm(),
-		y: v.y / v.Norm(),
-		z: v.z / v.Norm(),
-	}
+	v.x = v.x / v.Norm()
+	v.y = v.y / v.Norm()
+	v.z = v.z / v.Norm()
+
+	return v
 }
 
 func (v *Vector3D) IsNormalized() bool {
