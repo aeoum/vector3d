@@ -25,9 +25,10 @@ func (v *Vector3D) Normalize() *Vector3D {
 		return v
 	}
 
-	v.x = v.x / v.Norm()
-	v.y = v.y / v.Norm()
-	v.z = v.z / v.Norm()
+	norm := v.Norm()
+	v.x = v.x / norm
+	v.y = v.y / norm
+	v.z = v.z / norm
 
 	return v
 }

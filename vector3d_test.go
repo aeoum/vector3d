@@ -138,10 +138,10 @@ func TestVector3D_Normalize(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
-			got := tc.vec.Normalize()
+			got := tc.vec.Normalize().Norm()
 
-			if !equalFloat64(got.Norm(), tc.expectedValue) {
-				t.Fatalf("unexpected error: got=%v but expected=%v", got.Norm(), tc.expectedValue)
+			if !equalFloat64(got, tc.expectedValue) {
+				t.Fatalf("unexpected error: got=%v but expected=%v", got, tc.expectedValue)
 			}
 		})
 	}
