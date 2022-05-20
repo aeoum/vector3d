@@ -60,7 +60,7 @@ func (v *Vector3D) CrossProduct(v2 *Vector3D) Vector3D {
 }
 
 func (v *Vector3D) IsEqual(v2 *Vector3D) bool {
-	return v.x == v2.x && v.y == v2.y && v.z == v2.z
+	return equalFloat64(v.x, v2.x) && equalFloat64(v.y, v2.y) && equalFloat64(v.z, v2.z)
 }
 
 func (v *Vector3D) Scale(a float64) *Vector3D {
